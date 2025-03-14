@@ -149,6 +149,35 @@ dns-server 8.8.8.8
 end
 wr
 
+<< LAYER 3 Link Aggregation - Etherchannel using LaCP >>
+
+en
+conf t
+interface range gi 1/0/1-2
+channel-group 1 mode active
+switchport mode trunk
+switchport trunk allowed vlan all
+ex
+do wr
+
+<< STP for Loop Prevention >>
+
+en
+conf t
+hostname CS01
+spanning-tree mode rapid-pvst
+spanning-tree vlan 10,20,30,40 root primary
+do wr
+
+# CS02
+
+en
+conf t
+hostname CS01
+spanning-tree mode rapid-pvst
+spanning-tree vlan 10,20,30,40 root secondary
+do wr
+
 << LAYER 3 VLAN INTERFACE  >>
 
 vlan 10
@@ -233,4 +262,39 @@ conf t
 vtp domain mynetwork
 vtp mode client 
 vtp password cisco123
+do wr
+
+<< INTERFACE TRUNKING - CS01 & CS02 >>
+
+en
+conf t
+interface range gi 1/0/1-3
+switchport mode trunk
+switchport trunk allowed vlan all
+end
+wr
+
+en
+conf t
+interface range gi 1/0/5-7
+switchport mode trunk
+switchport trunk allowed vlan all
+end
+wr
+
+<< INTERFACE TRUNKING - AS01 & AS02 & AS03 >>
+
+en
+conf t
+int gi 0/1-2
+switchport mode trunk
+switchport trunk allowed vlan all
+ex
+do wr
+
+
+# STP 
+en
+conf t
+spanning-tree mode rapid-pvst
 do wr
