@@ -12,7 +12,7 @@
 ## 🔧 How to Use?  
 
 1️⃣ **Download Cisco Packet Tracer** (from Cisco NetAcad)  
-2️⃣ **Download this .pkt file** from [GitHub Repository](LINK_YOUR_GITHUB)  
+2️⃣ **Download this .pkt file** from [GitHub Repository](https://github.com/rajatoutbox/CCNA-Packet--Tracer-Project/blob/main/CCNA-Project.pkt?raw=true)  
 3️⃣ **Open the file in Packet Tracer**  
 4️⃣ **Run the following commands for verification:
 
