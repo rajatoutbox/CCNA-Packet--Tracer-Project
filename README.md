@@ -30,6 +30,10 @@
 
 -show ip interface brief
 
+## 📝 Configuration Files  
+📂 All configuration scripts are available in the `configs/` folder.  
+
+
 ## 🔗 Download the Project
 
 - Project file : **[Click Here to Download](https://github.com/rajatoutbox/CCNA-Packet--Tracer-Project/blob/main/CCNA-Project.pkt?raw=true)**
