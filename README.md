@@ -33,7 +33,7 @@
 ## 🔗 Download the Project
 
 - Project file : https://github.com/rajatoutbox/CCNA-Packet--Tracer-Project/blob/3c8e56ed525df173893edd2ebfd2bc4162441b22/3%20tier%20network.pkt
-- Config file : 
+- Config file : https://github.com/rajatoutbox/CCNA-Packet--Tracer-Project/blob/437259f564241c822cbbebb77a508b2ea7e2a356/config
 
 ## 🛠 Next Steps & Future Improvements
 
