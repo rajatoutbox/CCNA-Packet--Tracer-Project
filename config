@@ -1,0 +1,236 @@
+<< ROUTER interface IP >>
+en
+conf t
+int gi 0/0/0
+no shut
+ex
+int gi 0/0/0.10
+encapsulation dot1q 10
+ip address 172.16.10.1 255.255.255.0
+ex
+int gi 0/0/0.20
+encapsulation dot1q 20
+ip address 172.16.20.1 255.255.255.0
+ex
+int gi 0/0/1
+no shut
+ex
+int gi 0/0/1.10
+encapsulation dot1q 30
+ip address 172.16.30.1 255.255.255.0
+ex
+int gi 0/0/1.20
+encapsulation dot1q 40
+ip address 172.16.40.1 255.255.255.0
+ex
+int range gi 0/0/0-1
+switchport mode trunk
+switchport trunk allowed vlan all
+ex
+do wr
+
+<< ROUTER Sub-Interface IP >>
+en
+conf t
+int gi 0/0/0
+no shut
+ex
+int gi 0/0/0.10
+encapsulation dot1q 10
+ip address 172.16.10.2 255.255.255.0
+ex
+int gi 0/0/0.20
+encapsulation dot1q 20
+ip address 172.16.20.2 255.255.255.0
+ex
+int gi 0/0/1
+no shut
+ex
+int gi 0/0/1.10
+encapsulation dot1q 30
+ip address 172.16.30.2 255.255.255.0
+ex
+int gi 0/0/1.20
+encapsulation dot1q 40
+ip address 172.16.40.2 255.255.255.0
+ex
+int range gi 0/0/0-1
+switchport mode trunk
+switchport trunk allowed vlan all
+ex
+do wr
+
+<< ROUTER HSRP ISP1-ACTIVE >>
+en
+conf t
+hostname ISP1
+int gi 0/0/0.10
+standby 10 ip 172.16.10.254
+standby 10 priority 110
+standby 10 preempt
+ex
+int gi 0/0/0.20
+standby 20 ip 172.16.20.254
+standby 20 priority 110
+standby 20 preempt
+ex
+int gi 0/0/1.10
+standby 30 ip 172.16.30.254
+standby 30 priority 110
+standby 30 preempt
+ex
+int gi 0/0/1.20
+standby 40 ip 172.16.40.254
+standby 40 priority 110
+standby 40 preempt
+ex
+do wr
+
+<< ROUTER HSRP ISP2-STANDBY >>
+en
+conf t
+hostname ISP2
+int gi 0/0/0.10
+standby 10 ip 172.16.10.254
+standby 10 priority 90
+standby 10 preempt
+ex
+int gi 0/0/0.20
+standby 20 ip 172.16.20.254
+standby 20 priority 90
+standby 20 preempt
+ex
+int gi 0/0/1.10
+standby 30 ip 172.16.30.254
+standby 30 priority 90
+standby 30 preempt
+ex
+int gi 0/0/1.20
+standby 40 ip 172.16.40.254
+standby 40 priority 90
+standby 40 preempt
+ex
+do wr
+
+
+<< ROUTER DHCP - Both ISP1 &ISP2 for failover  >>
+en
+conf t
+ip dhcp excluded-address 172.16.10.1 172.16.10.10
+ip dhcp excluded-address 172.16.10.254  
+ip dhcp pool VLAN10
+network 172.16.10.0 255.255.255.0
+default-router 172.16.10.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.20.1 172.16.20.10
+ip dhcp excluded-address 172.16.20.254  
+ip dhcp pool VLAN20
+network 172.16.20.0 255.255.255.0
+default-router 172.16.20.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.40.1 172.16.40.10
+ip dhcp excluded-address 172.16.40.254 
+ip dhcp pool VLAN40
+network 172.16.40.0 255.255.255.0
+default-router 172.16.40.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.30.1 172.16.30.10
+ip dhcp excluded-address 172.16.30.254  
+ip dhcp pool VLAN30
+network 172.16.30.0 255.255.255.0
+default-router 172.16.30.254
+dns-server 8.8.8.8
+end
+wr
+
+<< LAYER 3 VLAN INTERFACE  >>
+
+vlan 10
+name orix
+ex
+vlan 20
+name CSG
+ex
+vlan 30
+name LGCNS
+ex
+vlan 40
+name cisco
+end
+conf t
+interface vlan 10
+ip address 172.16.10.1 255.255.255.0
+no shutdown
+ex
+interface vlan 20
+ip address 172.16.20.1 255.255.255.0
+no shutdown
+ex
+interface vlan 30
+ip address 172.16.30.1 255.255.255.0
+no shutdown
+ex
+interface vlan 40
+ip address 172.16.40.1 255.255.255.0
+no shutdown
+end
+wr
+
+<< LAYER 3 VTP - Server mode on both CS01 & CS02 for failover >>
+
+en
+conf t
+vtp domain mynetwork
+vtp mode server
+vtp version 2
+vtp password cisco123
+do wr
+
+<< LAYER 2 Interface >>
+
+# AS01
+
+en
+conf t
+hostname AS01
+int range gi 0/1-2
+switchport mode trunk
+switchport trunk allowed vlan all
+ex
+do wr
+
+# AS02
+
+en
+conf t
+hostname AS02
+int range gi 0/1-2
+switchport mode trunk
+switchport trunk allowed vlan all
+ex
+do wr
+
+# AS03
+
+en
+conf t
+hostname AS03
+int range gi 0/1-2
+switchport mode trunk
+switchport trunk allowed vlan all
+ex
+do wr
+
+<< LAYER 2 VTP >>
+en
+conf t
+vtp domain mynetwork
+vtp mode client 
+vtp password cisco123
+do wr
