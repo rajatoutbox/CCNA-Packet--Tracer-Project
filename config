@@ -336,6 +336,19 @@ VLAN 10 should be denied access to other VLAN 20 devices.
 All other traffic should be allowed as usual.
 
 ✅ Configuration:
+en
+conf t
+ip access-list extended VLAN10-SECURITY
+permit ip 172.16.10.0 0.0.0.255 host 172.16.20.100
+deny ip 172.16.10.0 0.0.0.255 172.16.20.0 0.0.0.255
+permit ip any any
+end
+conf t
+interface vlan 10
+ip access-group VLAN10-SECURITY in
+exit
+do wr
+
 
 🔹 Expected Result:
 
