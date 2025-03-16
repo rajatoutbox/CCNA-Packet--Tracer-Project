@@ -359,7 +359,7 @@ Other devices in VLAN 20 remain inaccessible from VLAN 10.
 2️⃣ Internet Access Control
 
 🎯 Objective:
-Only VLAN 30 (Employees) should be allowed internet access.
+Only VLAN 30 (LGCNS) should be allowed internet access.
 Other VLANs should be restricted from accessing external networks.
 
 ✅ Configuration:
@@ -372,14 +372,14 @@ All other VLANs are blocked from accessing external networks.
 3️⃣ ICMP (Ping) Restriction
 
 🎯 Objective:
-Only IT department (VLAN 40) can ping any device.
+Only CISCO (VLAN 40) can ping any device.
 All other VLANs are blocked from using ICMP.
 
 ✅ Configuration:
 
 🔹 Expected Result:
 
-Only VLAN 40 (IT team) can perform network diagnostics using ping.
+Only VLAN 40 (CISCO) can perform network diagnostics using ping.
 Ping requests from all other VLANs will be dropped.
 
 4️⃣ Blocking Malicious Traffic & Unauthorized Users
@@ -410,6 +410,6 @@ After applying ACLs, use the following commands to verify their functionality:
 
 ✔ VLAN 10 can only communicate with a specific server in VLAN 20.
 ✔ Only VLAN 30 users have internet access.
-✔ Only IT team (VLAN 40) can use ping (ICMP).
+✔ Only CISCO (VLAN 40) can use ping (ICMP).
 ✔ Malicious traffic and unauthorized networks are blocked.
 
