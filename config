@@ -298,3 +298,103 @@ en
 conf t
 spanning-tree mode rapid-pvst
 do wr
+
+
+############ VERSION 1.0 UPDATES ##############
+
+<< PORT SECURITY  >>
+
+conf t
+interface range FastEthernet0/1-22   
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2  # Max 2 devices allow
+ switchport port-security violation restrict  # generates logs on unauthorized devices
+ switchport port-security mac-address sticky  # automatically saves mac-address of first 2 devices connected to port
+ exit
+do wr
+
+<< ACL >>
+
+📌 Advanced ACL Implementation - Network Security Documentation
+📝 Scenario Overview
+In this network, multiple VLANs are configured for different departments. To enhance security, access control, and traffic filtering, ACLs (Access Control Lists) are implemented to regulate communication between VLANs, restrict unauthorized internet access, and block malicious IPs.
+
+The following security measures are applied using extended ACLs:
+1️⃣ Restricting VLAN-to-VLAN Communication – Only necessary communication is allowed.
+2️⃣ Internet Access Control – Only specific VLANs are permitted to access the internet.
+3️⃣ ICMP Restrictions – Only the IT department can use ping for network diagnostics.
+4️⃣ Blocking Malicious Traffic – Identified IPs and external unauthorized networks are blocked.
+
+1️⃣ VLAN-to-VLAN Communication Restrictions
+
+🎯 Objective:
+VLAN 10 (Users) should only access VLAN 20’s server (172.16.20.100).
+VLAN 10 should be denied access to other VLAN 20 devices.
+All other traffic should be allowed as usual.
+
+✅ Configuration:
+
+🔹 Expected Result:
+
+Users in VLAN 10 can communicate only with the server in VLAN 20 (172.16.20.100).
+Other devices in VLAN 20 remain inaccessible from VLAN 10.
+
+
+2️⃣ Internet Access Control
+
+🎯 Objective:
+Only VLAN 30 (Employees) should be allowed internet access.
+Other VLANs should be restricted from accessing external networks.
+
+✅ Configuration:
+
+🔹 Expected Result:
+
+VLAN 30 users can browse the internet.
+All other VLANs are blocked from accessing external networks.
+
+3️⃣ ICMP (Ping) Restriction
+
+🎯 Objective:
+Only IT department (VLAN 40) can ping any device.
+All other VLANs are blocked from using ICMP.
+
+✅ Configuration:
+
+🔹 Expected Result:
+
+Only VLAN 40 (IT team) can perform network diagnostics using ping.
+Ping requests from all other VLANs will be dropped.
+
+4️⃣ Blocking Malicious Traffic & Unauthorized Users
+
+🎯 Objective:
+Block access to known malicious IPs (192.168.100.200).
+Block an external unauthorized subnet (192.168.50.0/24).
+Allow all other normal traffic.
+
+✅ Configuration:
+
+🔹 Expected Result:
+
+Any traffic originating from malicious IPs (192.168.100.200) is blocked.
+Any device from unauthorized network (192.168.50.0/24) is denied access.
+All other traffic is allowed as usual.
+
+📌 ACLs Verification & Testing
+
+After applying ACLs, use the following commands to verify their functionality:
+
+✅ Check Configured ACLs: show ip access-lists
+✅ Check ACLs Applied on Interfaces:show running-config | include access-group
+✅ Check ACL Hit Counts (Monitor Traffic Matches):show access-lists
+✅ Check if an Interface Has Active ACLs:show ip interface GigabitEthernet0/0/0
+
+🚀 Final Summary: Implemented ACL Security Policies
+
+✔ VLAN 10 can only communicate with a specific server in VLAN 20.
+✔ Only VLAN 30 users have internet access.
+✔ Only IT team (VLAN 40) can use ping (ICMP).
+✔ Malicious traffic and unauthorized networks are blocked.
+
