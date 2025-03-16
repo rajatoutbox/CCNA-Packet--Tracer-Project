@@ -1,4 +1,4 @@
-<< ROUTER interface IP >>
+<< ROUTER sub-interface IP ISP1 >>
 en
 conf t
 int gi 0/0/0
@@ -23,13 +23,9 @@ int gi 0/0/1.20
 encapsulation dot1q 40
 ip address 172.16.40.1 255.255.255.0
 ex
-int range gi 0/0/0-1
-switchport mode trunk
-switchport trunk allowed vlan all
-ex
 do wr
 
-<< ROUTER Sub-Interface IP >>
+<< ROUTER Sub-Interface IP ISP2 >>
 en
 conf t
 int gi 0/0/0
@@ -53,10 +49,6 @@ ex
 int gi 0/0/1.20
 encapsulation dot1q 40
 ip address 172.16.40.2 255.255.255.0
-ex
-int range gi 0/0/0-1
-switchport mode trunk
-switchport trunk allowed vlan all
 ex
 do wr
 
@@ -162,6 +154,8 @@ do wr
 
 << STP for Loop Prevention >>
 
+#CS01
+
 en
 conf t
 hostname CS01
@@ -173,13 +167,14 @@ do wr
 
 en
 conf t
-hostname CS01
+hostname CS02
 spanning-tree mode rapid-pvst
 spanning-tree vlan 10,20,30,40 root secondary
 do wr
 
 << LAYER 3 VLAN INTERFACE  >>
-
+en
+conf t
 vlan 10
 name orix
 ex
@@ -286,11 +281,12 @@ wr
 
 en
 conf t
-int gi 0/1-2
+int range gi 0/1-2
 switchport mode trunk
 switchport trunk allowed vlan all
 ex
 do wr
+end
 
 
 # STP 
@@ -298,7 +294,7 @@ en
 conf t
 spanning-tree mode rapid-pvst
 do wr
-
+end
 
 ##################################################################################### VERSION 1.1 UPDATES #############################################################################################################
 
