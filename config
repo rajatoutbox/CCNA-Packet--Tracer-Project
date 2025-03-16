@@ -320,12 +320,12 @@ do wr
 
 📝 Scenario Overview
 
-In this network, multiple VLANs are configured for different departments. To enhance security, access control, and traffic filtering, ACLs (Access Control Lists) are implemented to regulate communication between VLANs, restrict unauthorized internet access, and block malicious IPs.
+In this network, multiple VLANs are configured for different clients. To enhance security, access control, and traffic filtering, ACLs (Access Control Lists) are implemented to regulate communication between VLANs, restrict unauthorized internet access, and block malicious IPs.
 
 The following security measures are applied using extended ACLs:
 1️⃣ Restricting VLAN-to-VLAN Communication – Only necessary communication is allowed.
 2️⃣ Internet Access Control – Only specific VLANs are permitted to access the internet.
-3️⃣ ICMP Restrictions – Only the IT department can use ping for network diagnostics.
+3️⃣ ICMP Restrictions – Only the CISCO  can use ping for network diagnostics.
 4️⃣ Blocking Malicious Traffic – Identified IPs and external unauthorized networks are blocked.
 
 1️⃣ VLAN-to-VLAN Communication Restrictions
