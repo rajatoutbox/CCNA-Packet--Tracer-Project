@@ -316,8 +316,10 @@ do wr
 
 << ACL >>
 
-📌 Advanced ACL Implementation - Network Security Documentation
+📌 Advanced ACL Implementation - Documentation
+
 📝 Scenario Overview
+
 In this network, multiple VLANs are configured for different departments. To enhance security, access control, and traffic filtering, ACLs (Access Control Lists) are implemented to regulate communication between VLANs, restrict unauthorized internet access, and block malicious IPs.
 
 The following security measures are applied using extended ACLs:
