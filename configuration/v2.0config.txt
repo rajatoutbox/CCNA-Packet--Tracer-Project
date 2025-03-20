@@ -1,1 +1,113 @@
+<< WAN - CE ROUTERS >>
 
+<< CORE LAYER >>
+
+ << CS01 >>
+
+## ETHER CHANNEL ##
+ en
+ conf t
+ int range gi 1/0/3-4
+ channel-group 1 mode active
+ ex
+ int port-channel 1
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ ex
+ do wr
+ end
+
+## STP ##
+
+ << CS01 PRIMARY >>
+
+  en
+  conf t
+  spanning-tree mode rapid-pvst
+  spanning-tree vlan 10,20,30,40 root primary
+  ex
+  do wr
+  end
+
+ << CS02 SECONDARY >>
+
+  en
+  conf t
+  spanning-tree mode rapid-pvst
+  spanning-tree vlan 10,20,30,40 root secondary
+  ex
+  do wr
+  end
+
+## VLAN ##
+
+ << CS01 >>
+
+  en
+  conf t
+  vlan 10
+  name FINANCE
+  ex
+  vlan 20
+  name SALES
+  ex
+  vlan 30
+  name IT
+  ex
+  vlan 40
+  name HR
+  ex
+  vlan 50
+  name MOBILITY
+  ex
+  vlan 60
+  name DEVICES
+  ex
+  vlan 70 
+  name Miscellaneous
+  ex
+  vlan 80
+  name INTERFACE-PARKING
+  ex
+  vlan 999
+  name NATIVE
+  ex
+ do wr
+ end
+
+## VLAN INTERFACE IP ##
+
+ << CS01 >>
+
+   
+
+## VTP ##
+
+ << CS01 >>
+
+   en
+   conf t
+   vtp domain mynetwork
+   vtp mode server
+   vtp version 2
+   vtp password cisco123
+
+ << CS02 >>
+
+    en
+    conf t
+    vtp domain mynetwork
+    vtp mode server
+    vtp version 2
+    vtp password cisco123
+ 
+
+<< DISTRIBUTION LAYER >>
+
+ << DS01 >>
+
+ << DS02 >>
+
+<< ACCESS LAYER >>
+
+ 
