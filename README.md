@@ -1,5 +1,5 @@
 # CCNA-Packet-Tracer-Project  
-### 🏷️ VERSION 1.0 | 📅 PUBLISH DATE: 14th March 2025
+### 🏷️ VERSION 2.0 | 📅 PUBLISH DATE: 21 March 2025
 
 ## 📌 Project Overview  
 
