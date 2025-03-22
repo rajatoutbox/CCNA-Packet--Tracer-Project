@@ -75,85 +75,15 @@
   do wr
   end
 
-## VLAN INTERFACE IP ##
+## INTERFACE IP ##
 
  << CS01 >>
 
-  en
-  conf t
-  interface vlan 10
-  ip address 172.16.10.1 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 20
-  ip address 172.16.20.1 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 30
-  ip address 172.16.30.1 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 40
-  ip address 172.16.40.1 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 50
-  ip address 172.16.50.1 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 60
-  ip address 172.16.60.1 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 70
-  ip address 172.16.70.1 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 80
-  ip address 172.16.80.1 255.255.255.0
-  no shutdown
-  ex
-  do wr
-  end
+
 
 << CS02 >>
 
-  en
-  conf t
-  interface vlan 10
-  ip address 172.16.10.2 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 20
-  ip address 172.16.20.2 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 30
-  ip address 172.16.30.2 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 40
-  ip address 172.16.40.2 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 50
-  ip address 172.16.50.2 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 60
-  ip address 172.16.60.2 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 70
-  ip address 172.16.70.2 255.255.255.0
-  no shutdown
-  ex
-  interface vlan 80
-  ip address 172.16.80.2 255.255.255.0
-  no shutdown
-  ex
-  do wr
-  end
+
   
 
 ## VTP CORE LAYER ##
@@ -176,12 +106,170 @@
     vtp version 2
     vtp password cisco123
  
-==========================================================================================(DISTRIBUTION LAYER)===============================================================================================
+==========================================================================================(DISTRIBUTION LAYER)====================================================================================================
 
  << DS01 >>
 
+en
+conf t
+interface vlan 10
+ip address 172.16.10.1 255.255.255.0
+standby 10 ip 172.16.10.254
+standby 10 priority 110
+standby 10 preempt
+no shutdown
+ex
+interface vlan 20
+ip address 172.16.20.1 255.255.255.0
+standby 20 ip 172.16.20.254
+standby 20 priority 110
+standby 20 preempt
+no shutdown
+ex
+interface vlan 30
+ip address 172.16.30.1 255.255.255.0
+standby 30 ip 172.16.30.254
+standby 30 priority 110
+standby 30 preempt
+no shutdown
+ex
+interface vlan 40
+ip address 172.16.40.1 255.255.255.0
+standby 40 ip 172.16.40.254
+standby 40 priority 110
+standby 40 preempt
+no shutdown
+ex
+interface vlan 50
+ip address 172.16.50.1 255.255.255.0
+standby 50 ip 172.16.50.254
+standby 50 priority 110
+standby 50 preempt
+no shutdown
+ex
+interface vlan 60
+ip address 172.16.60.1 255.255.255.0
+standby 60 ip 172.16.60.254
+standby 60 priority 110
+standby 60 preempt
+no shutdown
+ex
+interface vlan 70
+ip address 172.16.70.1 255.255.255.0
+standby 70 ip 172.16.70.254
+standby 70 priority 110
+standby 70 preempt
+no shutdown
+ex
+interface vlan 80
+ip address 172.16.80.1 255.255.255.0
+standby 80 ip 172.16.80.254
+standby 80 priority 110
+standby 80 preempt
+no shutdown
+ex
+do wr
+end
+
+    
  << DS02 >>
+
+en
+conf t
+interface vlan 10
+ip address 172.16.10.2 255.255.255.0
+standby 10 ip 172.16.10.254
+standby 10 priority 90
+standby 10 preempt
+no shutdown
+ex
+interface vlan 20
+ip address 172.16.20.2 255.255.255.0
+standby 20 ip 172.16.20.254
+standby 20 priority 90
+standby 20 preempt
+no shutdown
+ex
+interface vlan 30
+ip address 172.16.30.2 255.255.255.0
+standby 30 ip 172.16.30.254
+standby 30 priority 90
+standby 30 preempt
+no shutdown
+ex
+interface vlan 40
+ip address 172.16.40.2 255.255.255.0
+standby 40 ip 172.16.40.254
+standby 40 priority 90
+standby 40 preempt
+no shutdown
+ex
+interface vlan 50
+ip address 172.16.50.2 255.255.255.0
+standby 50 ip 172.16.50.254
+standby 50 priority 90
+standby 50 preempt
+no shutdown
+ex
+interface vlan 60
+ip address 172.16.60.2 255.255.255.0
+standby 60 ip 172.16.60.254
+standby 60 priority 90
+standby 60 preempt
+no shutdown
+ex
+interface vlan 70
+ip address 172.16.70.2 255.255.255.0
+standby 70 ip 172.16.70.254
+standby 70 priority 90
+standby 70 preempt
+no shutdown
+ex
+interface vlan 80
+ip address 172.16.80.2 255.255.255.0
+standby 80 ip 172.16.80.254
+standby 80 priority 90
+standby 80 preempt
+no shutdown
+ex
+do wr
+end
 
 =============================================================================================(ACCESS LAYER)==================================================================================================
 
- 
+<< AS01 >>
+
+## VTP MODE CLIENT ##
+
+en
+conf t
+vtp mode client
+vtp password cisco123
+
+
+
+## INTERFACE trunking##
+
+en
+conf t
+int ran gi 0/1-2
+switchport mode trunk
+switchport trunk allowed vlan all
+end
+wr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
