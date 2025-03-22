@@ -17,28 +17,6 @@
  do wr
  end
 
-## STP ##
-
- << CS01 PRIMARY >>
-
-  en
-  conf t
-  spanning-tree mode rapid-pvst
-  spanning-tree vlan 10,20,30,40 root primary
-  ex
-  do wr
-  end
-
- << CS02 SECONDARY >>
-
-  en
-  conf t
-  spanning-tree mode rapid-pvst
-  spanning-tree vlan 10,20,30,40 root secondary
-  ex
-  do wr
-  end
-
 ## VLAN ##
 
  << CS01 >>
@@ -69,7 +47,7 @@
   vlan 80
   name INTERFACE-PARKING
   ex
-  vlan 999
+  vlan 99
   name NATIVE
   ex
   do wr
@@ -107,8 +85,29 @@
     vtp password cisco123
  
 ==========================================================================================(DISTRIBUTION LAYER)====================================================================================================
+### STP ###
 
- << DS01 >>
+<< DS01 PRIMARY >>
+
+  en
+  conf t
+  spanning-tree mode rapid-pvst
+  spanning-tree vlan 10,20,30,40 root primary
+  spanning-tree vlan 50,60,70,80,99 root secondary
+  end
+  wr
+
+ << DS02 SECONDARY >>
+
+  en
+  conf t
+  spanning-tree mode rapid-pvst
+  spanning-tree vlan 10,20,30,40 root secondary
+  spanning-tree vlan 50,60,70,80,99 root primary
+  end
+  wr
+  
+<< DS01 >>
 
 en
 conf t
@@ -234,6 +233,34 @@ no shutdown
 ex
 do wr
 end
+
+<< TRUNKING INTERFACES >>
+
+en
+conf t
+int ran gi 1/0/1-2
+switchport mode trunk
+switchport trunk allowed vlan all
+end
+wr
+conf t
+int gi 1/0/3
+switchport mode trunk
+switchport trunk allowed vlan all
+ex
+int gi 1/0/6
+switchport mode trunk
+switchport trunk allowed vlan all
+end
+wr
+
+## VTP CLIENT ##
+en
+conf t
+vtp mode client
+vtp password cisco123
+end
+wr
 
 =============================================================================================(ACCESS LAYER)==================================================================================================
 
