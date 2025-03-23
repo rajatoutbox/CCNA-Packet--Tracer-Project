@@ -108,6 +108,9 @@
   wr
   
 << DS01 >>
+## Helper IP ##
+ip helper-address 192.168.3.1
+ip helper-address 192.168.5.2
 
 en
 conf t
@@ -116,6 +119,8 @@ ip address 172.16.10.1 255.255.255.0
 standby 10 ip 172.16.10.254
 standby 10 priority 110
 standby 10 preempt
+ip helper-address 192.168.3.1
+ip helper-address 192.168.5.2
 no shutdown
 ex
 interface vlan 20
@@ -123,6 +128,8 @@ ip address 172.16.20.1 255.255.255.0
 standby 20 ip 172.16.20.254
 standby 20 priority 110
 standby 20 preempt
+ip helper-address 192.168.3.1
+ip helper-address 192.168.5.2
 no shutdown
 ex
 interface vlan 30
@@ -130,6 +137,8 @@ ip address 172.16.30.1 255.255.255.0
 standby 30 ip 172.16.30.254
 standby 30 priority 110
 standby 30 preempt
+ip helper-address 192.168.3.1
+ip helper-address 192.168.5.2
 no shutdown
 ex
 interface vlan 40
@@ -137,6 +146,8 @@ ip address 172.16.40.1 255.255.255.0
 standby 40 ip 172.16.40.254
 standby 40 priority 110
 standby 40 preempt
+ip helper-address 192.168.3.1
+ip helper-address 192.168.5.2
 no shutdown
 ex
 interface vlan 50
@@ -144,6 +155,8 @@ ip address 172.16.50.1 255.255.255.0
 standby 50 ip 172.16.50.254
 standby 50 priority 110
 standby 50 preempt
+ip helper-address 192.168.3.1
+ip helper-address 192.168.5.2
 no shutdown
 ex
 interface vlan 60
@@ -151,6 +164,8 @@ ip address 172.16.60.1 255.255.255.0
 standby 60 ip 172.16.60.254
 standby 60 priority 110
 standby 60 preempt
+ip helper-address 192.168.3.1
+ip helper-address 192.168.5.2
 no shutdown
 ex
 interface vlan 70
@@ -158,6 +173,8 @@ ip address 172.16.70.1 255.255.255.0
 standby 70 ip 172.16.70.254
 standby 70 priority 110
 standby 70 preempt
+ip helper-address 192.168.3.1
+ip helper-address 192.168.5.2
 no shutdown
 ex
 interface vlan 80
@@ -165,6 +182,8 @@ ip address 172.16.80.1 255.255.255.0
 standby 80 ip 172.16.80.254
 standby 80 priority 110
 standby 80 preempt
+ip helper-address 192.168.3.1
+ip helper-address 192.168.5.2
 no shutdown
 ex
 do wr
@@ -173,6 +192,10 @@ end
     
  << DS02 >>
 
+##Helper IP##
+ip helper-address 192.168.4.1
+ip helper-address 192.168.6.2
+
 en
 conf t
 interface vlan 10
@@ -180,6 +203,8 @@ ip address 172.16.10.2 255.255.255.0
 standby 10 ip 172.16.10.254
 standby 10 priority 90
 standby 10 preempt
+ip helper-address 192.168.4.1
+ip helper-address 192.168.6.2
 no shutdown
 ex
 interface vlan 20
@@ -187,6 +212,8 @@ ip address 172.16.20.2 255.255.255.0
 standby 20 ip 172.16.20.254
 standby 20 priority 90
 standby 20 preempt
+ip helper-address 192.168.4.1
+ip helper-address 192.168.6.2
 no shutdown
 ex
 interface vlan 30
@@ -194,6 +221,8 @@ ip address 172.16.30.2 255.255.255.0
 standby 30 ip 172.16.30.254
 standby 30 priority 90
 standby 30 preempt
+ip helper-address 192.168.4.1
+ip helper-address 192.168.6.2
 no shutdown
 ex
 interface vlan 40
@@ -201,6 +230,8 @@ ip address 172.16.40.2 255.255.255.0
 standby 40 ip 172.16.40.254
 standby 40 priority 90
 standby 40 preempt
+ip helper-address 192.168.4.1
+ip helper-address 192.168.6.2
 no shutdown
 ex
 interface vlan 50
@@ -208,6 +239,8 @@ ip address 172.16.50.2 255.255.255.0
 standby 50 ip 172.16.50.254
 standby 50 priority 90
 standby 50 preempt
+ip helper-address 192.168.4.1
+ip helper-address 192.168.6.2
 no shutdown
 ex
 interface vlan 60
@@ -215,6 +248,8 @@ ip address 172.16.60.2 255.255.255.0
 standby 60 ip 172.16.60.254
 standby 60 priority 90
 standby 60 preempt
+ip helper-address 192.168.4.1
+ip helper-address 192.168.6.2
 no shutdown
 ex
 interface vlan 70
@@ -222,6 +257,8 @@ ip address 172.16.70.2 255.255.255.0
 standby 70 ip 172.16.70.254
 standby 70 priority 90
 standby 70 preempt
+ip helper-address 192.168.4.1
+ip helper-address 192.168.6.2
 no shutdown
 ex
 interface vlan 80
@@ -229,6 +266,8 @@ ip address 172.16.80.2 255.255.255.0
 standby 80 ip 172.16.80.254
 standby 80 priority 90
 standby 80 preempt
+ip helper-address 192.168.4.1
+ip helper-address 192.168.6.2
 no shutdown
 ex
 do wr
@@ -282,6 +321,16 @@ conf t
 int ran gi 0/1-2
 switchport mode trunk
 switchport trunk allowed vlan all
+end
+wr
+
+
+en
+conf t
+int ran gi 1/0/1-3
+switchport mode trunk
+switchport trunk allowed vlan all
+no shut
 end
 wr
 
