@@ -33,7 +33,7 @@
 -show ip interface brief 
 
 ## 📝 Configuration Files  
-📂 All configuration scripts are available in the `configs/` folder.  
+📂 All configuration scripts are available in the `configuration/` folder.  
 
 
 ## 🔗 Download the Project
