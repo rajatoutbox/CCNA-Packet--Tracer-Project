@@ -3,11 +3,13 @@
 
 ## 📌 Project Overview  
 
-- ✅ VLANs & Inter-VLAN Routing  
+- ✅ VLANs & Inter-VLAN Routing on distribution layer
 - ✅ HSRP for Gateway Redundancy  
 - ✅ DHCP Server Setup with failover
 - ✅ EtherChannel Link Aggregation using LaCP & Trunking
 - ✅ VTP Server-client Model for VLAN Database sync
+- ✅ OSPF for routing
+- ✅ DHCP Relay to forward dhcp IP request broadcasts.
 
 ## 🔧 How to Use?  
 
@@ -16,19 +18,19 @@
 3️⃣ **Open the file in Packet Tracer**  
 4️⃣ **Run the following commands for verification:
 
--show vlan brief
+-show vlan brief on CORE
 
--show interfaces trunk
+-show interfaces trunk ON DS,CORE,AS
 
--show ip dhcp binding
+-show ip dhcp binding ON ROUTERS
 
--show standby brief
+-show standby brief ON DS
 
--show vtp status
+-show vtp status ON CORE,DS,AS
 
--show cdp neighbors
+-show cdp neighbors ON CORE,DS,AS
 
--show ip interface brief
+-show ip interface brief 
 
 ## 📝 Configuration Files  
 📂 All configuration scripts are available in the `configs/` folder.  
