@@ -1,5 +1,6 @@
 ==========================================================================================(WAN - CE ROUTERS)================================================================================================
 << DS01 >>
+
 en
 conf t
 ip dhcp excluded-address 172.16.10.1 172.16.10.10
@@ -69,22 +70,74 @@ wr
 
 << DS02 >>
 
+en
+conf t
+ip dhcp excluded-address 172.16.10.1 172.16.10.10
+ip dhcp excluded-address 172.16.10.254  
+ip dhcp pool VLAN10
+network 172.16.10.0 255.255.255.0
+default-router 172.16.10.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.20.1 172.16.20.10
+ip dhcp excluded-address 172.16.20.254  
+ip dhcp pool VLAN20
+network 172.16.20.0 255.255.255.0
+default-router 172.16.20.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.40.1 172.16.40.10
+ip dhcp excluded-address 172.16.40.254 
+ip dhcp pool VLAN40
+network 172.16.40.0 255.255.255.0
+default-router 172.16.40.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.30.1 172.16.30.10
+ip dhcp excluded-address 172.16.30.254  
+ip dhcp pool VLAN30
+network 172.16.30.0 255.255.255.0
+default-router 172.16.30.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.50.1 172.16.50.10
+ip dhcp excluded-address 172.16.50.254  
+ip dhcp pool VLAN50
+network 172.16.50.0 255.255.255.0
+default-router 172.16.50.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.60.1 172.16.60.10
+ip dhcp excluded-address 172.16.60.254  
+ip dhcp pool VLAN60
+network 172.16.60.0 255.255.255.0
+default-router 172.16.60.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.70.1 172.16.70.10
+ip dhcp excluded-address 172.16.70.254  
+ip dhcp pool VLAN70
+network 172.16.70.0 255.255.255.0
+default-router 172.16.70.254
+dns-server 8.8.8.8
+end
+conf t
+ip dhcp excluded-address 172.16.80.1 172.16.80.10
+ip dhcp excluded-address 172.16.80.254  
+ip dhcp pool VLAN80
+network 172.16.80.0 255.255.255.0
+default-router 172.16.80.254
+dns-server 8.8.8.8
+end
+wr
+
 =============================================================================================(CORE LAYER)===================================================================================================
-
- << CS01 >>
-
-## ETHER CHANNEL ##
- en
- conf t
- int range gi 1/0/3-4
- channel-group 1 mode active
- ex
- int port-channel 1
- switchport mode trunk
- switchport trunk allowed vlan all
- ex
- do wr
- end
 
 ## VLAN ##
 
@@ -131,8 +184,6 @@ wr
 << CS02 >>
 
 
-  
-
 ## VTP CORE LAYER ##
 
  << CS01 >>
@@ -153,7 +204,7 @@ wr
     vtp version 2
     vtp password cisco123
  
-==========================================================================================(DISTRIBUTION LAYER)====================================================================================================
+==========================================================================================(DISTRIBUTION LAYER)===============================================================================================
 ### STP ###
 
 << DS01 PRIMARY >>
@@ -467,8 +518,6 @@ wr
 
 =============================================================================================(ACCESS LAYER)==================================================================================================
 
-<< AS01 >>
-
 ## VTP MODE CLIENT ##
 
 en
@@ -477,8 +526,6 @@ vtp mode client
 vtp password cisco123
 end
 wr
-
-
 
 ## INTERFACE trunking##
 
