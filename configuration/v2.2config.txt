@@ -1,8 +1,9 @@
 ==========================================================================================(WAN - CE ROUTERS)================================================================================================
-<< DS01 >>
+<< CE1 >>
 
 en
 conf t
+hostname CE1
 ip dhcp excluded-address 172.16.10.1 172.16.10.10
 ip dhcp excluded-address 172.16.10.254  
 ip dhcp pool VLAN10
@@ -68,10 +69,11 @@ dns-server 8.8.8.8
 end
 wr
 
-<< DS02 >>
+<< CE2 >>
 
 en
 conf t
+hostname CE2
 ip dhcp excluded-address 172.16.10.1 172.16.10.10
 ip dhcp excluded-address 172.16.10.254  
 ip dhcp pool VLAN10
@@ -145,6 +147,7 @@ wr
 
   en
   conf t
+  hostname CS1
   vlan 10
   name FINANCE
   ex
@@ -194,15 +197,20 @@ wr
    vtp mode server
    vtp version 2
    vtp password cisco123
+   end
+   wr
 
  << CS02 >>
 
     en
     conf t
+    hostname CS2
     vtp domain mynetwork
     vtp mode server
     vtp version 2
     vtp password cisco123
+    end
+    wr
  
 ==========================================================================================(DISTRIBUTION LAYER)===============================================================================================
 ### STP ###
