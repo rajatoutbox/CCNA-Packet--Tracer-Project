@@ -598,6 +598,7 @@ wr
 ## VTP CLIENT ##
 en
 conf t
+vtp domain mynetwork
 vtp mode client
 vtp password cisco123
 end
@@ -623,6 +624,8 @@ conf t
 ip routing
 router ospf 1
 router-id 1.1.1.5
+network 192.168.3.0 0.0.0.3 area 0
+network 192.168.4.0 0.0.0.3 area 0
 network 172.16.10.0 0.0.0.255 area 0
 network 172.16.20.0 0.0.0.255 area 0
 network 172.16.30.0 0.0.0.255 area 0
@@ -642,6 +645,8 @@ conf t
 ip routing
 router ospf 1
 router-id 1.1.1.6
+network 192.168.4.0 0.0.0.3 area 0
+network 192.168.6.0 0.0.0.3 area 0
 network 172.16.10.0 0.0.0.255 area 0
 network 172.16.20.0 0.0.0.255 area 0
 network 172.16.30.0 0.0.0.255 area 0
@@ -661,6 +666,7 @@ wr
 
 en
 conf t
+vtp domain mynetwork
 vtp mode client
 vtp password cisco123
 end
