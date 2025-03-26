@@ -228,6 +228,12 @@ no switchport
 des << TO CE2 >>
 ip address 192.168.100.2 255.255.255.252
 no shut
+ex
+int gi 1/0/7
+des << TRUNK LINK TO DS01 gi 1/0/7 >>
+switchport mode trunk
+switchport trunk allowed vlan all
+no shut
 end
 wr
 
@@ -257,6 +263,12 @@ int gi 1/0/6
 no switchport
 des << TO DS01 gi 1/0/6 >>
 ip address 192.168.5.1 255.255.255.252
+no shut
+ex
+int gi 1/0/7
+des << TRUNK LINK TO CS01 gi 1/0/7 >>
+switchport mode trunk
+switchport trunk allowed vlan all
 no shut
 end
 wr
