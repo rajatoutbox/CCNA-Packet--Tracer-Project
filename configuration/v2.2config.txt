@@ -358,6 +358,12 @@ ip route 0.0.0.0 0.0.0.0 192.168.99.1
 end
 wr
 
+<< STPCORE >>
+
+en
+conf t
+spanning-tree mode rapid-pvst
+
 ==========================================================================================(DISTRIBUTION LAYER)===============================================================================================
 ### STP ###
 
@@ -681,6 +687,12 @@ switchport mode trunk
 switchport trunk allowed vlan all
 end
 wr
+conf t
+spanning-tree mode rapid-pvst
+spanning-tree portfast default
+do wr
+end
+
 
 
 
