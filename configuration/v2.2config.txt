@@ -147,7 +147,7 @@ wr
 
   en
   conf t
-  hostname CS1
+  hostname CS01
   vlan 10
   name FINANCE
   ex
@@ -181,66 +181,116 @@ wr
 ## INTERFACE IP ##
 
  << CS01 >>
-
+en
+conf t
+int gi 1/0/5
+no switchport
+des << TO DS01 - gi 1/0/5 >>
+ip address 192.168.3.1 255.255.255.252
+no shut
+end
+wr
+conf t
+int gi 1/0/6
+no switchport
+des << TO DS02 -gi 1/0/6 >>
+ip address 192.168.6.1 255.255.255.252
+ex
+int gi 1/0/1
+no switchport
+des << TO CE1 gi 0/0/0 >>
+ip address 192.168.1.2 255.255.255.252
+no shut
+ex
+int gi 1/0/2
+no switchport
+des << TO CE2 >>
+ip address 192.168.100.2 255.255.255.252
+no shut
+end
+wr
 
 
 << CS02 >>
-
+en
+conf t
+int gi 1/0/5
+no switchport
+ip address 192.168.4.1 255.255.255.252
+ex
+int gi 1/0/1
+no switchport
+des << TO CE2 >>
+ip address 192.168.2.2 255.255.255.252
+ex
+int gi 1/0/2
+no switchport
+des << TO CE01 >>
+ip address 192.168.99.2 255.255.255.252
+no shut
+end
+wr
+conf t
+int gi 1/0/6
+no switchport
+ip address 192.168.5.1 255.255.255.252
+no shut
+end
+wr
 
 ## VTP CORE LAYER ##
 
- << CS01 >>
+<< CS01 >>
 
-   en
-   conf t
-   vtp domain mynetwork
-   vtp mode server
-   vtp version 2
-   vtp password cisco123
-   end
-   wr
+en
+conf t
+vtp domain mynetwork
+vtp mode server
+vtp version 2
+vtp password cisco123
+end
+wr
 
- << CS02 >>
+<< CS02 >>
 
-    en
-    conf t
-    hostname CS2
-    vtp domain mynetwork
-    vtp mode server
-    vtp version 2
-    vtp password cisco123
-    end
-    wr
+en
+conf t
+hostname CS02
+vtp domain mynetwork
+vtp mode server
+vtp version 2
+vtp password cisco123
+end
+wr
  
 ==========================================================================================(DISTRIBUTION LAYER)===============================================================================================
 ### STP ###
 
 << DS01 PRIMARY >>
 
-  en
-  conf t
-  spanning-tree mode rapid-pvst
-  spanning-tree vlan 10,20,30,40 root primary
-  spanning-tree vlan 50,60,70,80,99 root secondary
-  end
-  wr
+en
+conf t
+spanning-tree mode rapid-pvst
+spanning-tree vlan 10,20,30,40 root primary
+spanning-tree vlan 50,60,70,80,99 root secondary
+end
+wr
 
  << DS02 SECONDARY >>
 
-  en
-  conf t
-  spanning-tree mode rapid-pvst
-  spanning-tree vlan 10,20,30,40 root secondary
-  spanning-tree vlan 50,60,70,80,99 root primary
-  end
-  wr
+en
+conf t
+spanning-tree mode rapid-pvst
+spanning-tree vlan 10,20,30,40 root secondary
+spanning-tree vlan 50,60,70,80,99 root primary
+end
+wr
   
-<< DS01 >>
+<< DS01 HSRP>>
+
 ## Helper IP ##
 ip helper-address 192.168.1.1 
 ip helper-address 192.168.100.1
-ip helper-address 192.168.2.1
-ip helper-address 192.168.99.1
 
 en
 conf t
@@ -249,12 +299,9 @@ ip address 172.16.10.1 255.255.255.0
 standby 10 ip 172.16.10.254
 standby 10 priority 110
 standby 10 preempt
-no ip helper-address 192.168.3.1
-no ip helper-address 192.168.5.2
+
 ip helper-address 192.168.1.1 
 ip helper-address 192.168.100.1
-ip helper-address 192.168.2.1
-ip helper-address 192.168.99.1
 no shutdown
 ex
 interface vlan 20
@@ -262,12 +309,8 @@ ip address 172.16.20.1 255.255.255.0
 standby 20 ip 172.16.20.254
 standby 20 priority 110
 standby 20 preempt
-no ip helper-address 192.168.3.1
-no ip helper-address 192.168.5.2
 ip helper-address 192.168.1.1 
 ip helper-address 192.168.100.1
-ip helper-address 192.168.2.1
-ip helper-address 192.168.99.1
 no shutdown
 ex
 interface vlan 30
@@ -275,12 +318,8 @@ ip address 172.16.30.1 255.255.255.0
 standby 30 ip 172.16.30.254
 standby 30 priority 110
 standby 30 preempt
-no ip helper-address 192.168.3.1
-no ip helper-address 192.168.5.2
 ip helper-address 192.168.1.1 
 ip helper-address 192.168.100.1
-ip helper-address 192.168.2.1
-ip helper-address 192.168.99.1
 no shutdown
 ex
 interface vlan 40
@@ -288,12 +327,8 @@ ip address 172.16.40.1 255.255.255.0
 standby 40 ip 172.16.40.254
 standby 40 priority 110
 standby 40 preempt
-no ip helper-address 192.168.3.1
-no ip helper-address 192.168.5.2
 ip helper-address 192.168.1.1 
 ip helper-address 192.168.100.1
-ip helper-address 192.168.2.1
-ip helper-address 192.168.99.1
 no shutdown
 ex
 interface vlan 50
@@ -301,12 +336,8 @@ ip address 172.16.50.1 255.255.255.0
 standby 50 ip 172.16.50.254
 standby 50 priority 110
 standby 50 preempt
-no ip helper-address 192.168.3.1
-no ip helper-address 192.168.5.2
 ip helper-address 192.168.1.1 
 ip helper-address 192.168.100.1
-ip helper-address 192.168.2.1
-ip helper-address 192.168.99.1
 no shutdown
 ex
 interface vlan 60
@@ -314,12 +345,8 @@ ip address 172.16.60.1 255.255.255.0
 standby 60 ip 172.16.60.254
 standby 60 priority 110
 standby 60 preempt
-no ip helper-address 192.168.3.1
-no ip helper-address 192.168.5.2
 ip helper-address 192.168.1.1 
 ip helper-address 192.168.100.1
-ip helper-address 192.168.2.1
-ip helper-address 192.168.99.1
 no shutdown
 ex
 interface vlan 70
@@ -327,12 +354,8 @@ ip address 172.16.70.1 255.255.255.0
 standby 70 ip 172.16.70.254
 standby 70 priority 110
 standby 70 preempt
-no ip helper-address 192.168.3.1
-no ip helper-address 192.168.5.2
 ip helper-address 192.168.1.1 
 ip helper-address 192.168.100.1
-ip helper-address 192.168.2.1
-ip helper-address 192.168.99.1
 no shutdown
 ex
 interface vlan 80
@@ -340,23 +363,16 @@ ip address 172.16.80.1 255.255.255.0
 standby 80 ip 172.16.80.254
 standby 80 priority 110
 standby 80 preempt
-no ip helper-address 192.168.3.1
-no ip helper-address 192.168.5.2
 ip helper-address 192.168.1.1 
 ip helper-address 192.168.100.1
-ip helper-address 192.168.2.1
-ip helper-address 192.168.99.1
 no shutdown
 ex
 do wr
 end
 
-    
- << DS02 >>
+<< DS02 >>
 
 ##Helper IP##
-ip helper-address 192.168.1.1 
-ip helper-address 192.168.100.1
 ip helper-address 192.168.2.1
 ip helper-address 192.168.99.1
 
@@ -367,10 +383,6 @@ ip address 172.16.10.2 255.255.255.0
 standby 10 ip 172.16.10.254
 standby 10 priority 90
 standby 10 preempt
-no ip helper-address 192.168.4.1
-no ip helper-address 192.168.6.2
-ip helper-address 192.168.1.1 
-ip helper-address 192.168.100.1
 ip helper-address 192.168.2.1
 ip helper-address 192.168.99.1
 no shutdown
@@ -380,10 +392,6 @@ ip address 172.16.20.2 255.255.255.0
 standby 20 ip 172.16.20.254
 standby 20 priority 90
 standby 20 preempt
-no ip helper-address 192.168.4.1
-no ip helper-address 192.168.6.2
-ip helper-address 192.168.1.1 
-ip helper-address 192.168.100.1
 ip helper-address 192.168.2.1
 ip helper-address 192.168.99.1
 no shutdown
@@ -393,10 +401,6 @@ ip address 172.16.30.2 255.255.255.0
 standby 30 ip 172.16.30.254
 standby 30 priority 90
 standby 30 preempt
-no ip helper-address 192.168.4.1
-no ip helper-address 192.168.6.2
-ip helper-address 192.168.1.1 
-ip helper-address 192.168.100.1
 ip helper-address 192.168.2.1
 ip helper-address 192.168.99.1
 no shutdown
@@ -406,10 +410,6 @@ ip address 172.16.40.2 255.255.255.0
 standby 40 ip 172.16.40.254
 standby 40 priority 90
 standby 40 preempt
-no ip helper-address 192.168.4.1
-no ip helper-address 192.168.6.2
-ip helper-address 192.168.1.1 
-ip helper-address 192.168.100.1
 ip helper-address 192.168.2.1
 ip helper-address 192.168.99.1
 no shutdown
@@ -419,10 +419,6 @@ ip address 172.16.50.2 255.255.255.0
 standby 50 ip 172.16.50.254
 standby 50 priority 90
 standby 50 preempt
-no ip helper-address 192.168.4.1
-no ip helper-address 192.168.6.2
-ip helper-address 192.168.1.1 
-ip helper-address 192.168.100.1
 ip helper-address 192.168.2.1
 ip helper-address 192.168.99.1
 no shutdown
@@ -432,10 +428,6 @@ ip address 172.16.60.2 255.255.255.0
 standby 60 ip 172.16.60.254
 standby 60 priority 90
 standby 60 preempt
-no ip helper-address 192.168.4.1
-no ip helper-address 192.168.6.2
-ip helper-address 192.168.1.1 
-ip helper-address 192.168.100.1
 ip helper-address 192.168.2.1
 ip helper-address 192.168.99.1
 no shutdown
@@ -445,10 +437,6 @@ ip address 172.16.70.2 255.255.255.0
 standby 70 ip 172.16.70.254
 standby 70 priority 90
 standby 70 preempt
-no ip helper-address 192.168.4.1
-no ip helper-address 192.168.6.2
-ip helper-address 192.168.1.1 
-ip helper-address 192.168.100.1
 ip helper-address 192.168.2.1
 ip helper-address 192.168.99.1
 no shutdown
@@ -458,10 +446,6 @@ ip address 172.16.80.2 255.255.255.0
 standby 80 ip 172.16.80.254
 standby 80 priority 90
 standby 80 preempt
-no ip helper-address 192.168.4.1
-no ip helper-address 192.168.6.2
-ip helper-address 192.168.1.1 
-ip helper-address 192.168.100.1
 ip helper-address 192.168.2.1
 ip helper-address 192.168.99.1
 no shutdown
@@ -476,7 +460,7 @@ en
 conf t
 int gi 1/0/5
 no switchport
-ip address 192.168.3.2
+ip address 192.168.3.2 255.255.255.252
 no shut
 end
 wr
@@ -485,22 +469,29 @@ int gi 1/0/6
 no switchport
 ip address 192.168.5.2
 no shut
+ex
+int gi 1/0/7
+des << TRUNK LINK TO CS01 gi 1/0/7 >>
+switchport mode trunk
+switchport trunk allowed vlan all
+no shut
 end
 wr
 
 << DS02 >>
 en
 conf t
-int gi 1/0/4
+int gi 1/0/5
 no switchport
-ip address 192.168.4.2
+ip address 192.168.4.2 255.255.255.252
 no shut
 end
 wr
 conf t
 int gi 1/0/6
 no switchport
-ip address 192.168.6.2
+ip address 192.168.6.2 255.255.255.252
+
 
 
 
