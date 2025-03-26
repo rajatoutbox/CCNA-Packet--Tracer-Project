@@ -1,5 +1,33 @@
 ==========================================================================================(WAN - CE ROUTERS)================================================================================================
-<< CE1 >>
+## INTERFACES ##
+
+<< CE01 >>
+en
+conf t
+int gi 0/0/0 
+ip address 192.168.1.1 255.255.255.252
+no shut
+ex
+int gi 0/0/1
+ip address 192.168.99.1 255.255.255.252
+no shut
+end
+wr
+
+<< CE02 >>
+en
+conf t
+int gi 0/0/0 
+ip address 192.168.2.1 255.255.255.252
+no shut
+ex
+int gi 0/0/1
+ip address 192.168.100.1 255.255.255.252
+no shut
+end
+wr
+
+## DHCP POOL ##
 
 en
 conf t
@@ -199,9 +227,9 @@ wr
   do wr
   end
 
-## INTERFACE IP ##
+## VLAN INTERFACE IP ##
 
- << CS01 >>
+<< CS01 >>
 en
 conf t
 int gi 1/0/5
