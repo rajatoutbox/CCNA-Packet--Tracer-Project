@@ -705,6 +705,18 @@ do wr
 end
 
 
+<< PORT SECURITY >>
+
+en
+conf t
+int range fa 0/1-22
+switchport port-security 
+switchport port-security maximum 2 
+switchport por-security violation shutdown
+switchport port-security mac-address sticky
+do wr
+end
+
 
 
 
