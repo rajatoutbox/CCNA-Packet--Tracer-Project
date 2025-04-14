@@ -34,6 +34,8 @@
 
 -show ip interface brief 
 
+-show access-lists on DS
+
 ## 📝 Configuration Files  
 📂 All configuration scripts are available in the `configuration/` folder.  
 
