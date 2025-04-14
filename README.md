@@ -1,5 +1,5 @@
 # CCNA-Packet-Tracer-Project  
-### 🏷️ VERSION 2.2 | 📅 PUBLISH DATE: 26 March 2025 | ALWAYS DOWNLOAD LATEST VERSION .pkt file |
+### 🏷️ VERSION 2.2 | 📅 PUBLISH DATE: 15 April 2025 | ALWAYS DOWNLOAD LATEST VERSION .pkt file |
 
 ## 📌 Project Overview  
 
@@ -10,6 +10,8 @@
 - ✅ VTP Server-client Model for VLAN Database sync
 - ✅ OSPF for routing
 - ✅ DHCP Relay to forward dhcp IP request broadcasts.
+- ✅ ACL Implemented for VLAN Segregation
+- ✅ Port Security on access switches ( Switch hardening )
 
 ## 🔧 How to Use?  
 
