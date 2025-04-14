@@ -677,6 +677,12 @@ permit ip any 172.16.10.0 0.0.0.255
 do wr
 end
 
+conf t
+int vlan 10
+ip access-group 101 out
+end
+wr
+
 =============================================================================================(ACCESS LAYER)==================================================================================================
 
 ## VTP MODE CLIENT ##
@@ -712,7 +718,7 @@ conf t
 int range fa 0/1-22
 switchport port-security 
 switchport port-security maximum 2 
-switchport por-security violation shutdown
+switchport port-security violation shutdown
 switchport port-security mac-address sticky
 do wr
 end
