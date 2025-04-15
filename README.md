@@ -49,17 +49,10 @@
 
 ### 🔹 1. Adding Network Security Features.
 
-Configure Port Security on access switches.
-
-Implement ACLs (Access Control Lists) for traffic filtering.
-
+Perimeter security and introduction of firewalls (CISCO ASA).
 Enable 802.1X Authentication for endpoint security.
 
 #### 🔹 2. Implementing Advanced Routing.
-
-Use OSPF or EIGRP instead of just static routing.
-
-Configure Route Summarization to optimize performance.
 
 Implement BGP (Border Gateway Protocol) for WAN .
 
