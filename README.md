@@ -16,7 +16,7 @@
 ## 🔧 How to Use?  
 
 1️⃣ **Download Cisco Packet Tracer** (from Cisco NetAcad)  
-2️⃣ **Download this .pkt file** from [GitHub Repository](https://github.com/rajatoutbox/CCNA-Packet--Tracer-Project/blob/9e838174dc7efb85388a830e3d9b384ac986db12/Updates/v2.2.pkt)  
+2️⃣ **Download this .pkt file** from [GitHub Repository](https://github.com/rajatoutbox/CCNA-Packet--Tracer-Project/blob/edacc74a208145f3e6a8f7209bf92f3c32d4fdc4/Updates/v2.3.pkt)  
 3️⃣ **Open the file in Packet Tracer**  
 4️⃣ **Run the following commands for verification**:
 
@@ -42,7 +42,7 @@
 
 ## 🔗 Download the Project
 
-- Project file : **[Click Here to Download](https://github.com/rajatoutbox/CCNA-Packet--Tracer-Project/blob/9e838174dc7efb85388a830e3d9b384ac986db12/Updates/v2.2.pkt)**
+- Project file : **[Click Here to Download](https://github.com/rajatoutbox/CCNA-Packet--Tracer-Project/blob/edacc74a208145f3e6a8f7209bf92f3c32d4fdc4/Updates/v2.3.pkt)**
 - Config file : **[Click Here to Download](https://github.com/rajatoutbox/CCNA-Packet--Tracer-Project/blob/224d537c0a7114c4a5842e64ec9125f05d3063d4/configuration/v2.0config.txt)**
 
 ## 🛠 Next Steps & Future Improvements
