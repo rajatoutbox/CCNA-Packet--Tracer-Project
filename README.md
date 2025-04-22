@@ -1,5 +1,5 @@
 # CCNA-Packet-Tracer-Project  
-### 🏷️ VERSION 2.2 | 📅 PUBLISH DATE: 15 April 2025 | ALWAYS DOWNLOAD LATEST VERSION .pkt file |
+### 🏷️ VERSION 2.3 | 📅 PUBLISH DATE: 15 April 2025 | ALWAYS DOWNLOAD LATEST VERSION .pkt file |
 
 ## 📌 Project Overview  
 
