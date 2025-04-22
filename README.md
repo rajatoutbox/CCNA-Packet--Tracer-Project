@@ -52,7 +52,7 @@
 Perimeter security and introduction of firewalls (CISCO ASA).
 Enable 802.1X Authentication for endpoint security.
 
-#### 🔹 2. Implementing Advanced Routing.
+### 🔹 2. Implementing Advanced Routing.
 
 Implement BGP (Border Gateway Protocol) for WAN .
 
