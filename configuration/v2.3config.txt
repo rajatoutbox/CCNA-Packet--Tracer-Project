@@ -167,7 +167,7 @@ dns-server 8.8.8.8
 end
 wr
 
-## ROUUTING ##
+## ROUTING ##
 
 <<CE01>>
 en
