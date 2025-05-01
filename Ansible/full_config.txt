@@ -1,6 +1,7 @@
-!DEVICE: CE1
+!DEVICE: CE01
 en
 conf t
+hostname CE01
 int gi 0/0/0 
 ip address 192.168.1.1 255.255.255.252
 no shut
@@ -86,9 +87,10 @@ network 192.168.99.0 0.0.0.3 area 0
 end
 wr
 !
-!DEVICE: CE2
+!DEVICE: CE02
 en
 conf t
+hostname CE02
 int gi 0/0/0 
 ip address 192.168.2.1 255.255.255.252
 no shut
@@ -100,7 +102,6 @@ end
 wr
 en
 conf t
-hostname CE2
 ip dhcp excluded-address 172.16.10.1 172.16.10.10
 ip dhcp excluded-address 172.16.10.254  
 ip dhcp pool VLAN10
@@ -269,6 +270,7 @@ spanning-tree mode rapid-pvst
 !DEVICE: CS02
 en
 conf t
+hostname CS02
 int gi 1/0/5
 no switchport
 des << TO DS02 gi 1/0/5 >>
@@ -302,7 +304,6 @@ end
 wr
 en
 conf t
-hostname CS02
 vtp domain mynetwork
 vtp mode server
 vtp version 2
@@ -329,6 +330,7 @@ spanning-tree mode rapid-pvst
 !DEVICE: DS01
 en
 conf t
+hostname DS01
 spanning-tree mode rapid-pvst
 spanning-tree vlan 10,20,30,40 root primary
 spanning-tree vlan 50,60,70,80,99 root secondary
@@ -483,6 +485,7 @@ wr
 !DEVICE: DS02
 en
 conf t
+hostname DS02
 spanning-tree mode rapid-pvst
 spanning-tree vlan 10,20,30,40 root secondary
 spanning-tree vlan 50,60,70,80,99 root primary
