@@ -1,7 +1,7 @@
 import os
 import yaml
 
-# Path to input config file
+# Paths to input config file--Please Change according to your preferred path
 input_file = r"C:\Users\RajatSingh\Downloads\full_config.txt"
 output_file = os.path.expanduser(r"C:\Users\RajatSingh\Downloads\playbook.yml")
 
