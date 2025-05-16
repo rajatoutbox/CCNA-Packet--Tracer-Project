@@ -1,3 +1,18 @@
+=============================================================================================(SSH ENABLE)==================================================================================================
+enable
+configure terminal
+ip domain-name example.com
+crypto key generate rsa modulus 1024
+username admin privilege 15 secret password
+line vty 0 4
+ login local
+ transport input ssh
+ ip ssh version 2
+ip ssh time-out 60
+ip ssh authentication-retries 3
+service password-encryption
+do wr
+end
 ==========================================================================================(WAN - CE ROUTERS)================================================================================================
 ## INTERFACES ##
 
@@ -8,7 +23,7 @@ int gi 0/0/0
 ip address 192.168.1.1 255.255.255.252
 no shut
 ex
-int gi 0/0/1
+int gi 0/1
 ip address 192.168.99.1 255.255.255.252
 no shut
 end
@@ -17,11 +32,11 @@ wr
 << CE02 >>
 en
 conf t
-int gi 0/0/0 
+int gi 0/0/1 
 ip address 192.168.2.1 255.255.255.252
 no shut
 ex
-int gi 0/0/1
+int gi 0/1
 ip address 192.168.100.1 255.255.255.252
 no shut
 end
