@@ -3,7 +3,7 @@ enable
 configure terminal
 ip domain-name example.com
 crypto key generate rsa modulus 1024
-username admin privilege 15 secret password
+username admin privilege 15 secret cisco123
 line vty 0 4
  login local
  transport input ssh
